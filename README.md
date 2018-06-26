@@ -1,11 +1,11 @@
-##wp-docker - Docker for Wordpress development
+## wp-docker - Docker for Wordpress development
 
-####Prerequisite
+#### Prerequisite
 
 - [git](https://git-scm.com/downloads)
 - [Docker and Docker Compose](https://www.docker.com/products/docker/) latest
 
-####Installation
+#### Installation
 
 1 - Clone the **wp-docker** in to your **Wordpress** project root directory
 ```
@@ -32,10 +32,20 @@ docker network create WP-DOCKER
 ./develop.sh up -d
 ```
 
-####Useful commands
+#### Useful commands
 
-- List containers
+- List containers.
 ```
 ./develop.sh
 ```
 
+- To use power of **Wordpress** command-line interface (WP-CLI).
+```
+./develop.sh wp-cli --info
+```
+For more information visit - https://wp-cli.org documentation. (Use any command without `wp`)
+
+- Run any `npm` command.
+```
+./develop.sh node --version
+```
