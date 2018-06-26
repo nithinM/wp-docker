@@ -12,13 +12,23 @@ export DB_PASSWORD=${DB_PASSWORD:-password}
 export APP_PORT=${APP_PORT:-80}
 
 COMPOSE="docker-compose -f docker-compose.yml"
+TTY="-T"
 
 if [ $# -gt 0 ];then
-    if [ "$1" == "t" ]; then
+    if [ "$1" == "wp-cli" ]; then
         shift 1
-        $COMPOSE exec \
-            app \
-            sh -c "cd /var/www/html && ./vendor/bin/phpunit $@"
+        $COMPOSE run --rm $TTY \
+            -w /var/www/html \
+            wordpress \
+            wp "$@"
+
+    elif [ "$1" == "node" ]; then
+        shift 1
+        $COMPOSE run --rm $TTY \
+            -w /var/www/html \
+            node \
+            npm "$@"
+
     else
         $COMPOSE "$@"
     fi
